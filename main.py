@@ -30,6 +30,8 @@ def validate(text: str) -> None:
     if text.count("\n") != 1:
         raise ValueError("entry must be exactly two lines")
     for ch in text:
+        if ch == "\n":
+            continue
         if unicodedata.category(ch) in ("Cc", "Cf", "Zl", "Zp"):
             raise ValueError(f"entry contains a control/format character: U+{ord(ch):04X}")
 
